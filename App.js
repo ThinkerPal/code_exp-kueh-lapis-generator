@@ -1,16 +1,30 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BlockRGB from "./components/BlockRGB";
 
+const COLOURS = [
+  { red: 255, green: 0, blue: 0, alpha: 1, id: "0" },
+  { red: 0, green: 255, blue: 0, alpha: 1, id: "1" },
+  { red: 0, green: 0, blue: 255, alpha: 1, id: "2" },
+];
+
 function HomeScreen() {
+  function renderItem({ item }) {
+    return (
+      <BlockRGB
+        red={item.red}
+        green={item.green}
+        blue={item.blue}
+        alpha={item.alpha}
+      />
+    );
+  }
   return (
     <View style={styles.container}>
-      <BlockRGB red={255} green={0} blue={0} alpha={1} />
-      <BlockRGB red={0} green={255} blue={0} alpha={1} />
-      <BlockRGB red={0} green={0} blue={255} alpha={1} />
+      <FlatList width="100%" data={COLOURS} renderItem={renderItem} />
     </View>
   );
 }
@@ -32,6 +46,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
   },
 });

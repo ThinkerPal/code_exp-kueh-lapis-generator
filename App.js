@@ -19,21 +19,21 @@ function HomeScreen() {
   }
   function addColour() {
     setColours([
-      ...colours,
+      // ...colours,
       {
         red: Math.floor(Math.random() * 256),
         green: Math.floor(Math.random() * 256),
         blue: Math.floor(Math.random() * 256),
         alpha: Math.random(),
         id: `${colours.length}`,
-      }, //,...colours, //moving this below also achieves it
+      }, ...colours, //moving this below also achieves it
     ]);
   }
   return (
     <View style={styles.container}>
       <Button title="Add Colour" onPress={addColour} />
       <FlatList
-        inverted // - Starts list from bottom
+        // inverted // - Starts list from bottom
         style={{ width: "100%" }}
         data={colours}
         renderItem={renderItem}
@@ -48,7 +48,7 @@ export default function HomeStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Kueh Lapis!" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
